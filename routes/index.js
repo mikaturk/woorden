@@ -3,11 +3,13 @@ var router = express.Router();
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
+var bodyParser = require('body-parser').json();
 
 /* POST method for getting the descs */
 router.post('/data', function(req, res, next) {
   desclist = []
-  req.body.urls.forEach(function(word, ind){
+  console.log(req.body)
+  req.body.woorden.forEach(function(word, ind){
     url = "http://www.woorden.org/woord/" + word
     request(url, function(error, response, html){
       if(!error){
